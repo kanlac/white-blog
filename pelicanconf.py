@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Dean'
-SITENAME = 'White Blog'
+SITENAME = 'Weekly'
 SITEURL = 'http://localhost:8000'
 
 PATH = 'content'
@@ -13,6 +13,8 @@ TIMEZONE = 'Asia/Shanghai'
 DEFAULT_LANG = 'en'
 
 USE_FOLDER_AS_CATEGORY = True
+
+DELETE_OUTPUT_DIRECTORY = True
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
