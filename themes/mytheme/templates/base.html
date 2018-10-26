@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock html_lang %}">
+<head>
+    {% block head %}
+    
+        <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+        <meta charset="utf-8"/>
+        <meta name="description"
+              content="a blog from a scrach."/>
+        <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/main.css"/>
+
+        {# CodeHilite stylesheet #}
+        <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/pygments/default.css"/>
+
+        {# bricks stylesheets #}
+        <link rel="stylesheet" href="{{ SITEURL}}/theme/css/foundation.min.css" media="all">
+        {# <link rel="stylesheet" href="{{ SITEURL }}/theme/css/lamboz.css" media="all"> #}
+
+    {% endblock head %}
+</head>
+
+<body>
+
+{# Banner #}
+<div id="banner">
+    <div class="banner_container">
+
+        <ul class="banner_list">
+            <li><a href="{{ SITEURL }}" style="font-weight:400"><strong>{{ SITENAME }}</strong></a></li>
+            <li><a href="{{ SITEURL }}">home</a></li>
+            <li><a href="{{ SITEURL }}/category/dev.html">dev</a></li>
+            <li><a href="{{ SITEURL }}/category/fq.html">FQ</a></li>
+            <li><a href="{{ SITEURL }}/pages/about-me.html">about</a></li>
+        </ul>
+
+        {# RSS #}
+        <div class="rss_symbol" style="background-image:url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/rss-symbol.svg')">
+            <a href="#"></a>
+        </div>
+
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

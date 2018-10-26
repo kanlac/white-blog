@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content_title %}{% endblock %}
+
+{% block content %}
+
+	{% if articles %}
+		<div id="article">
+		    <div class="article_container">
+		    	{# Group articles by year #}
+		    	{% for grouper, list in articles_page.object_list | groupby('date.year') | reverse %}
+
+		    		<div class="article_body">
+		    			<p class="article_year">{{ grouper }}</p>
+		    			<ul class="article_ul">
+		    				{% for article in list %}
+		    					<li>
+		    						<span>{{ article.date|strftime('%m-%d') }}</span>
+		    						<a class="article_title" href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+		    					</li>
+		    				{% endfor %}
+		    			</ul>
+		    		</div>
+		    		
+		        {% endfor %}
+		    </div>
+		</div>
+	{% endif %}
+
+{% endblock %}

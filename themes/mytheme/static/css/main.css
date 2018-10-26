@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+/* Banner */
+#banner {
+    height: 40px;
+    width: 100%;
+    background-color: rgb(36, 36, 36);
+}
+
+.banner_container {
+    height: 100%;
+    width: 97%;
+    margin: auto;
+}
+
+.banner_list {
+    height: 100%;
+    list-style: none;
+    text-align: center;
+    float: left;
+}
+
+.banner_list li {
+    float: left;
+    height: 100%;
+    margin: 0 15px;
+}
+
+.banner_list li a {
+    text-align: center;
+    padding: 0 15px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 40px;
+    text-decoration: none;
+    /*font-weight:200;*/
+    font-family: AvenirNext-Regular;
+    color: #FFFFFF;
+}
+
+.banner_list li a:hover {
+    background-color: rgb(55, 54, 54);
+}
+
+.rss_symbol {
+    /*width: 20px;
+    height: 20px;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    float: right;
+    margin-top: 10px;
+    color: #040404;
+}
+
+.rss_symbol a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Article List */
+.article {
+    width: 100%;
+}
+
+.article_container {
+    width: 40%;
+    height: 100%;
+    margin: auto;
+}
+
+.article_body {
+    margin: 100px 0;
+}
+
+.article_body > p {
+    margin-bottom: 20px;
+    font-weight: 600;
+    /* font-family:"" */
+}
+
+.article_ul {
+    list-style: none;
+}
+
+.article_ul li {
+    margin: 30px 0px;
+}
+
+.article_ul > li > span {
+    font-size: 13px;
+    opacity: 0.4;
+    font-family: Futura-Medium;
+    color: #040404;
+}
+
+.article_ul > li > a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+.article_year {
+    font-family: Futura-Medium;
+    font-size: 15px;
+    color: #040404;
+}
+
+.article_title {
+    font-family: AvenirNext-Medium;
+    font-size: 30px;
+    color: #040404;
+}

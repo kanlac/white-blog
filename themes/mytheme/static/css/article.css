@@ -1,0 +1,87 @@
+pre {
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
+}
+
+/* HTML5 tags */
+header, section, article {
+	display: block;
+}
+
+
+#content {
+	width:50%;
+	margin:auto;
+	margin-top:120px;
+	margin-bottom:100px;
+}
+
+.entry-title {
+	font-size: 2em;
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+.entry-title a {
+    text-decoration: none;
+    color: #333;
+}
+
+.entry-date {
+	opacity: 0.4;
+	font-family: AvenirNext-Regular;
+	font-size: 15px;
+	color: #040404;
+}
+
+.entry-content {
+	font-size:16px;
+	line-height:26px;
+	margin-top: 30px;
+}
+
+img {
+    max-width: 100%;
+    height: auto
+}
+
+BODY, P, DIV, UL LI, OL LI, TD {
+    font-family: "Avenir", sans-serif;
+    font-size: 1em;
+    line-height: 30px;
+    font-weight: 400;
+}
+
+H1, H2, H3, H4, H5, H6 {
+    font-family: "Avenir", sans-serif;
+    font-weight: 600;
+    color: #777;
+}
+
+H1 {
+    font-size: 2em;
+}
+
+H2 {
+    font-size: 1.8em;
+}
+
+H3 {
+    font-size: 1.5em;
+}
+
+H4 {
+    font-size: 1.3em;
+}
+
+H5 {
+    font-size: 1.1em;
+}
+
+H6 {
+    font-size: 1em;
+}
+

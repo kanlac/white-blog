@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	    
+        <title>设计模式课程笔记</title>
+        <meta charset="utf-8"/>
+        <meta name="description"
+              content="a blog from a scrach."/>
+        <link rel="stylesheet" href="http://localhost:8000/theme/css/main.css"/>
+
+        <link rel="stylesheet" href="http://localhost:8000/theme/css/pygments/default.css"/>
+
+        <link rel="stylesheet" href="http://localhost:8000/theme/css/foundation.min.css" media="all">
+
+
+	<link rel="stylesheet" href="http://localhost:8000/theme/css/article.css"/>
+</head>
+
+<body>
+
+<div id="banner">
+    <div class="banner_container">
+
+        <ul class="banner_list">
+            <li><a href="http://localhost:8000" style="font-weight:400"><strong>White Blog</strong></a></li>
+            <li><a href="http://localhost:8000">home</a></li>
+            <li><a href="http://localhost:8000/category/dev.html">dev</a></li>
+            <li><a href="http://localhost:8000/category/fq.html">FQ</a></li>
+            <li><a href="http://localhost:8000/pages/about-me.html">about</a></li>
+        </ul>
+
+        <div class="rss_symbol" style="background-image:url('http://localhost:8000/theme/images/rss-symbol.svg')">
+            <a href="#"></a>
+        </div>
+
+    </div>
+</div>
+
+	<section id="content">
+		<article>
+			<header>
+				<h1 class="entry-title"><a href="http://localhost:8000/she-ji-mo-shi-ke-cheng-bi-ji.html" rel="bookmark" title="Permalink to <设计模式课程笔记>">设计模式课程笔记</a></h1>
+				<p class="entry-date">2014-06-03</p>
+			</header>
+
+			<div class="entry-content">
+				<h2>七大设计原则</h2>
+<ol>
+<li>Single Responsibility Principle</li>
+<li>Open-Closed Principle - 对扩展开放，对修改关闭</li>
+<li>Liskov Substitution Principle - 任何基类可以出现的地方，子类一定可以出现
+当添加新的子类时，只添加不覆写</li>
+<li>Law of Demeter - 最少知道原则</li>
+<li>Interface Segregation Principle</li>
+<li>Dependence Inversion Principle - 高层代码不依赖于底层实现</li>
+<li>Composite Reuse Principle - 合成复用原则，多用关联，少用继承</li>
+</ol>
+<p>“Sol(l)id Core”</p>
+<h2>工厂模式（Factory Pattern）</h2>
+<h3>一、简单工厂模式</h3>
+<div class="highlight"><pre><span></span><span class="cm">/*** Product Interface ***/</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">AutoInsurance</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">getInsurInfo</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="cm">/*** Product Implementations ***/</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BodyInjury</span> <span class="kd">implements</span> <span class="n">AutoInsurance</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">getInsurInfo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;get body injury insurance info..&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Collision</span> <span class="kd">implements</span> <span class="n">AutoInsurance</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">getInsurInfo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;get collision insurance info..&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="cm">/*** Simple Facotry ***/</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PolicyProducer</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">AutoInsurance</span> <span class="nf">getPolicyObj</span><span class="o">(</span><span class="n">String</span> <span class="n">option</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">AutoInsurance</span> <span class="n">ai</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">option</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;BodyInjury&quot;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">ai</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BodyInjury</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">ai</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Collision</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ai</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="cm">/*** Client ***/</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Client</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">event</span> <span class="o">=</span> <span class="s">&quot;BodyInjury&quot;</span><span class="o">;</span>
+
+        <span class="n">AutoInsurance</span> <span class="n">ai</span> <span class="o">=</span> <span class="n">PolicyProducer</span><span class="o">.</span><span class="na">getPolicyObj</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+        <span class="n">ai</span><span class="o">.</span><span class="na">getInsurInfo</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>要添加新的对象类型，需要修改工厂类，不需要修改客户端。</p>
+<p>弊端：不符合开闭原则</p>
+<h3>二、工厂方法模式</h3>
+<p>工厂类作为接口。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*** Factory ***/</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PolicyProducer</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">AutoInsurance</span> <span class="nf">getPolicyObj</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="cm">/*** Factory Implementations ***/</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BodyPolicy</span> <span class="kd">implements</span> <span class="n">PolicyProducer</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">AutoInsurance</span> <span class="nf">getPolicyObj</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">BodyInjury</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CollisionPolicy</span> <span class="kd">implements</span> <span class="n">PolicyProducer</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">AutoInsurance</span> <span class="nf">getPolicyObj</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Collision</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="cm">/*** AutoInsurance and its implementations... (refer to Simple-Factory). ***/</span>
+
+<span class="cm">/*** Client ***/</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Client</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">event</span> <span class="o">=</span> <span class="s">&quot;BodyInjury&quot;</span><span class="o">;</span>
+
+        <span class="n">PolicyProducer</span> <span class="n">policyProducer</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;BodyInjury&quot;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">policyProducer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BodyPolicy</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">policyProducer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Collision</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="n">AutoInsurance</span> <span class="n">ai</span> <span class="o">=</span> <span class="n">policyProducer</span><span class="o">.</span><span class="na">getPolicyObj</span><span class="o">();</span>
+        <span class="n">ai</span><span class="o">.</span><span class="na">getInsurInfo</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>工厂方法模式是三个工厂模式中对开闭原则支持最好的。要添加新的对象类型，不需要修改工厂类，只要创建新的工厂类的实现，因此它支持开闭原则；但是需要在客户端添加代码。</p>
+<h3>三、抽象工厂模式</h3>
+<p>当生产模式存在类似交叠的关系时，就有一个产品族+工厂族的问题，此时就应该使用抽象工厂模式。</p>
+<p>为了比较好地理解抽象工厂，这里讲述两个例子，它们所用到的也是不同的思路。</p>
+<p>样例一的产品族为：高档别墅，中档别墅，高档公寓，中档公寓；
+样例二的产品族为：颜色产品（包括蓝色，黄色等），图形产品（包括圆形，矩形等）。</p>
+<p>做后面的分析时，请结合具体的实现代码理解：样例一<a href="/design-pattern-course/example-I.java">代码</a>；样例二参考 <a href="https://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm">Tutorialspoint</a> 或菜鸟教程。</p>
+<p>首先提取出产品族中的属性。对于样例一，首先分析产品结构，可以提取出两个属性：
+- 类型（type）
+    - 别墅（house）
+    - 公寓（condo）
+- 级别（class）
+    - 高档（super）
+    - 中档（medium）</p>
+<p>对于样例二，同样可以提取出属性：
+- 颜色（color）
+    - 蓝色（blue）
+    - 黄色（yellow）
+- 形状（shape）
+    - 圆形（circle）
+    - 矩形（rectangle）</p>
+<p>但两个样例的区别在于，样例一的产品是属性嵌合的（一个产品必须同时具备两个属性），而样例二是属性独立的（要么是颜色产品，要么是形状产品）。因此，针对两种不同的产品模式，就有不同的设计思路。</p>
+<p>为了方便，我们把前者叫做<strong>组合属性</strong>产品，后者叫做<strong>单一属性</strong>产品。</p>
+<p>确定产品的属性间关系后，就可以开始为产品建模了。</p>
+<p>针对组合属性产品，我们可以更进一步，把样例一中的\&lt;类型>看作<strong>类别属性</strong>，\&lt;级别>看作<strong>修饰属性</strong>，之所以要这样做，是为了实现两者在逻辑上的分离。<strong>定义产品接口时将基于类别属性，而工厂层将基于修饰属性</strong>。</p>
+<p>再举一个组合属性产品的例子：男（女）鞋、男（女）上衣、男（女）下装。哪个应该是类别属性？明显的，\&lt;男>\&lt;女>本身不能是产品，\&lt;鞋>\&lt;上衣>\&lt;下装>才是，因此前者是修饰属性，后者是类别属性。</p>
+<p>接下来就可以得出产品族和工厂族分别为：
+- 产品族
+    - 别墅建筑（House）
+    - 公寓建筑（Condo）
+- 工厂族
+    - 高档建筑工厂（superBuildingFactory）
+    - 中档建筑工厂（mediumBuildingFactory）</p>
+<p>相对应的，对于属于单一属性产品的样例二则应该是：
+- 产品族
+    - Rectangle \&lt;Shape\\>
+    - Circle \&lt;Shape\\>
+    - Blue \&lt;Color\\>
+    - Yellow \&lt;Color\\>
+- 工厂族
+    - 图形工厂（ShapeFactory）
+    - 颜色工厂（ColorFactory）</p>
+<p>从上面可以看出，两者的产品类实现过程也是不一样的。同样是四个产品，样例一有两个接口类（<code>House</code> <code>Condo</code>），两个实现类；样例二有两个接口类，四个实现类。</p>
+<p>对于组合属性产品，它的两个属性可以在逻辑上分离。在前面的步骤中，样例一只是以\&lt;建筑类型>这个属性来定义接口，另一个属性——\&lt;建筑等级>——被放到工厂层去了，也就是修饰属性决定工厂层实现。</p>
+<p>两者在抽象工厂类的定义上也是有差异的。乍看上去都是有两个返回产品对象的方法，但样例一返回的是 <code>House</code> 和 <code>Condo</code> 对象，样例二返回的是 <code>Shape</code> 和 <code>Color</code> 对象。
+<img alt="发现差异了吗？" src="/images/design-pattern-course/1.png"></p>
+<p>最后是抽象工厂的实现。对于组合属性产品，工厂实现类基于修饰属性下的取值多少（两种房屋等级）；对于单一属性产品，工厂实现类基于产品族的属性本身（颜色和形状）。</p>
+<p>有些抽象工厂的实现中，还有一层创建具体工厂的逻辑（<code>FactoryProducer</code>），在样例一的代码中通过为抽象工厂添加静态函数 <code>getBuildingFactory()</code> 省去了。</p>
+<h4>抽象工厂与开闭原则</h4>
+<p>抽象工厂产品族的扩展可以分为两种，一种是<strong>产品属性本身的扩展</strong>，如在 Shape 和 Color 外增加一个 Opacity，另一种是<strong>属性下的值的扩展</strong>，如在\&lt;\&lt;<code>House</code>>>和\&lt;\&lt;<code>Condo</code>>>外增加一种房屋类型。</p>
+<p><img alt="desc" src="/images/design-pattern-course/2.png"></p>
+<blockquote>
+<p>《软件设计模式与体系结构》中考虑扩展性时，采取的是「工厂层」和「产品层」的视角去分析，但考虑到这里组合属性和单一属性不同样例的区别，我不采用书中的分析方法。</p>
+</blockquote>
+<h5>分析组合属性产品族的扩展性</h5>
+<p>对于<strong>产品属性本身的扩展</strong>，假设我们在样例一的\&lt;房屋类型>、\&lt;房屋等级>之外，再添加一个组合属性\&lt;房屋位置>（取值有\&lt;\&lt;<code>Urban</code>>>和\&lt;\&lt;<code>Suburb</code>>>）。由于组合属性样例采用了把原有两类属性在逻辑上分离的方式，所以现在新加入的第三组属性，要么和类别属性（\&lt;房屋类型>）一起放到产品层，要么和修饰属性（\&lt;房屋等级>）一起放入工厂层。实际上，稍微思考一些就发现，两种做法都是不贴合实际的。因此，这种情况下是<strong>不符合开闭原则</strong>的。</p>
+<p>对于<strong>属性下的值的扩展</strong>，假设在\&lt;房屋等级>里添加一个取值\&lt;\&lt;<code>Basic</code>>>，那么我们要做的：a) 添加产品层实现 <code>BasicHouse</code> <code>BasicCondo</code>；b) 添加工厂层实现 <code>BasicBuildingFactory</code>。可见，这种情况下是<strong>符合开闭原则</strong>的。</p>
+<h5>分析单一属性产品族的扩展性</h5>
+<p>对于<strong>产品属性本身的扩展</strong>，假设在样例二的\&lt;颜色>\&lt;形状>之外，再添加一个单一属性\&lt;透明度>（取值有\&lt;\&lt;<code>translucence</code>>>\&lt;\&lt;<code>opacite</code>>>）。则我们必须要在抽象工厂中添加方法 <code>getOpacity</code>，因此这种情况下是<strong>不符合开闭原则</strong>的。</p>
+<p>对于<strong>属性下的值的扩展</strong>，假设在\&lt;颜色>之下添加一个取值\&lt;\&lt;<code>Red</code>>>，那么我们只需添加一个 <code>Color</code> 的实现类 <code>Red</code>，只要工厂类实现使用了 Java 映射，就不需要做客户端以外的更改了。因此，这种情况下是<strong>符合开闭原则</strong>的。</p>
+<p>由上，我们证明了<strong>不论产品族是单一属性还是组合属性，抽象工厂都是对产品属性本身的扩展关闭，对属性下的值的扩展开放的</strong>。</p>
+<h2>单例模式（Singleton Pattern）</h2>
+<p>可以分为三类：
+1. 构造器私有，每次从外部获取实例时重新实例化；
+2. 构造器私有，仅在第一次初始化；
+3. 构造器公有，以 HashMap 存储实例，实现可继承性。</p>
+<p>前两种较常用，它们都不允许在外部实例化，因而也不能被继承。唯一实例对象的初始化和获取函数（<code>getInstance()</code>）都是静态的。</p>
+			</div>
+		</article>
+	</section>
+
+</body>
+</html>
